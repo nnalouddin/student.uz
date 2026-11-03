@@ -26,10 +26,7 @@ if (!$result) {
     <nav class="navbar navbar-dark">
         <div class="container py-2">
             <a class="navbar-brand" href="index.php">
-                <img src="img/logo_tersu.png"
-                     alt="TerDU"
-                     width="38"
-                     class="me-2">
+                <img src="img/logo_tersu.png" alt="TerDU" width="38" class="me-2">
                 Student’s CRUD
             </a>
         </div>
@@ -63,48 +60,51 @@ if (!$result) {
 
                         while ($student = mysqli_fetch_assoc($result)) {
                         ?>
-                            <tr>
-                                <td><?php echo $tr++; ?></td>
+                        <tr>
+                            <td><?php echo $tr++; ?></td>
 
-                                <td>
-                                    <img src="img/<?php echo $student['photo'] ?: 'student.jpg'; ?>"
-                                         alt="Talaba rasmi"
-                                         class="photo">
-                                </td>
+                            <td>
+                                <img src="img/<?php echo $student['photo'] ?: 'student.jpg'; ?>" alt="Talaba rasmi"
+                                    class="photo">
+                            </td>
 
-                                <td><?php echo $student['lname']; ?></td>
-                                <td><?php echo $student['fname']; ?></td>
-                                <td><?php echo $student['patronymic']; ?></td>
+                            <td><?php echo $student['lname']; ?></td>
+                            <td><?php echo $student['fname']; ?></td>
+                            <td><?php echo $student['patronymic']; ?></td>
 
-                                <td>
-                                    <?php
+                            <td>
+                                <?php
                                     echo date(
                                         'd.m.Y',
                                         strtotime($student['birthdate'])
                                     );
                                     ?>
-                                </td>
+                            </td>
 
-                                <td class="actions">
-                                    <a href="update.php?id=<?php echo (int)$student['id']; ?>"
-                                       class="btn btn-success btn-sm">
-                                        <i class="fa-solid fa-arrows-rotate me-2"></i>Update
-                                    </a>
+                            <td class="actions">
+                                <a href="update.php?id=<?php echo (int)$student['id']; ?>"
+                                    class="btn btn-success btn-sm">
+                                    <i class="fa-solid fa-arrows-rotate me-2"></i>Update
+                                </a>
 
-                                    <a href="delete.php?id=<?php echo (int)$student['id']; ?>"
-                                       class="btn btn-danger btn-sm">
-                                        <i class="fa-solid fa-trash me-2"></i>Delete
-                                    </a>
-                                </td>
-                            </tr>
+                                <a href="view.php?id=<?php echo (int)$student['id']; ?>" class="btn btn-info btn-sm">
+                                    <i class="fa-solid fa-eye me-2"></i>View
+                                </a>
+
+                                <a href="delete.php?id=<?php echo (int)$student['id']; ?>"
+                                    class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-trash me-2"></i>Delete
+                                </a>
+                            </td>
+                        </tr>
                         <?php } ?>
 
                         <?php if (mysqli_num_rows($result) === 0) { ?>
-                            <tr>
-                                <td colspan="7" class="text-center">
-                                    Hozircha talabalar yo‘q.
-                                </td>
-                            </tr>
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                Hozircha talabalar yo‘q.
+                            </td>
+                        </tr>
                         <?php } ?>
                     </tbody>
                 </table>
